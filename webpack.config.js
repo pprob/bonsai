@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/client/index.ts'),
@@ -40,6 +41,11 @@ module.exports = {
       template: 'src/client/index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new HTMLWebpackTagsPlugin({
+      tags: ['config/main.js'],
+      append: false,
+      usePublicPath: false,
+    }),
   ],
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
