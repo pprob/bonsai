@@ -1,3 +1,5 @@
+@import './variables';
+
 * {
   box-sizing: border-box;
 }
@@ -8,4 +10,6 @@ html {
   padding: 0;
   width: 100%;
   height: 100%;
+  background-color: $background-color-grey;
+  color: $primary-font-color;
 }
