@@ -1,0 +1,12 @@
+@import '../../styles/_variables.scss';
+
+.icon__container {
+  display: flex;
+  border-left: 1px solid $darker-grey;
+  border-bottom: 1px solid $darker-grey;
+  cursor: pointer;
+  padding: 30px 20px;
+  .nav-icon {
+    margin-right: 10px;
+  }
+}
