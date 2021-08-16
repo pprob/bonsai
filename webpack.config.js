@@ -50,6 +50,7 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
     proxy: {
+      '/config': 'http://localhost:3000',
       '/api': 'http://localhost:3000',
     },
     hot: true,
