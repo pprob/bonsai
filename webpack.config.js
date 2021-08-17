@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require('webpack');
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
@@ -48,7 +49,8 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'dist'),
     proxy: {
       '/config': 'http://localhost:3000',
       '/api': 'http://localhost:3000',
