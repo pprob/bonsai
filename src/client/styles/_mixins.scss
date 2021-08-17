@@ -1,7 +1,7 @@
 @import './variables';
 
 @mixin sm-min {
-  @media (min-width: $screen-sm) {
+  @media (min-width: $screen-sm-min) {
     @content;
   }
 }
