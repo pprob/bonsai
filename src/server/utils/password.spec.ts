@@ -13,11 +13,22 @@ describe('PasswordUtil', () => {
   it('should return true if supplied password matches stored password', async () => {
     const hashedPassword = await PasswordUtil.hashPassword(password);
 
-    const suppliedPassword = await PasswordUtil.comparePassword(
+    const isPasswordMatch = await PasswordUtil.comparePassword(
       hashedPassword,
       password,
     );
 
-    expect(suppliedPassword).toBe(true);
+    expect(isPasswordMatch).toBe(true);
+  });
+
+  it('should return false if supplied password does not match stored password', async () => {
+    const hashedPassword = await PasswordUtil.hashPassword(password);
+
+    const isPasswordMatch = await PasswordUtil.comparePassword(
+      hashedPassword,
+      'test12',
+    );
+
+    expect(isPasswordMatch).toEqual(false);
   });
 });
