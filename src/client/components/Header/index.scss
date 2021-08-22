@@ -1,18 +1,52 @@
 @import '../../styles/variables';
+@import '../../styles//mixins';
 
 .header__container {
   display: flex;
   font-family: $secondary-text;
   font-weight: 600;
   align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $darker-grey;
+
+  .header-burger-container {
+    display: flex;
+    align-items: center;
+  }
 
   .header-navigation-icons {
-    display: flex;
+    display: none;
+
+    @include md-min {
+      display: flex;
+    }
   }
 
   .header-navigation-links {
+    display: none;
+
+    @include md-min {
+      display: block;
+    }
+
     ul {
       list-style-type: none;
+      padding: 0;
+
+      > li {
+        display: inline-block;
+        margin: 0px 20px;
+        cursor: pointer;
+        background-size: 0% 7px;
+        background-position: 0 100%;
+        background-repeat: no-repeat;
+        background-image: linear-gradient($light-yellow, $light-yellow);
+        transition: background-size 700ms;
+
+        &:hover {
+          background-size: 100% 7px;
+        }
+      }
     }
   }
 }
