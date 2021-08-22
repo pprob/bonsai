@@ -6,8 +6,8 @@ const assetsPath = path.join(__dirname, '../../../dist');
 
 router
   .use(express.static(assetsPath))
-  .get('/hearbeat', (req: Request, res: Response) => {
-    res.send('live');
+  .get('/heartbeat', (req: Request, res: Response) => {
+    res.send('server:live');
   });
 
 export default router;
