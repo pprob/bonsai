@@ -1,4 +1,5 @@
 export type GlobalState = {
-  test: boolean;
+  loading: boolean;
+  showMenuSlider: boolean;
   theme: string;
 };
