@@ -1,9 +1,9 @@
 import {History} from 'history';
-import {combineReducers} from 'redux';
+import {combineReducers, Reducer} from 'redux';
 import {connectRouter} from 'connected-react-router';
 import globalReducer from './global/reducer';
 
-const createRootReducer = (history: History) => {
+const createRootReducer = (history: History): Reducer => {
   const appReducers = {
     router: connectRouter(history),
     global: globalReducer,
