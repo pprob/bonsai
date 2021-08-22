@@ -8,6 +8,7 @@ import staticRouter from './config/staticRouter';
 import configRouter from './config/configRouter';
 import cookieSession from 'cookie-session';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware';
+import {apiRouter} from './api';
 
 const assetsPath = path.join(__dirname, '../../dist');
 
@@ -27,9 +28,7 @@ app
   )
   .use(staticRouter)
   .use('/config', configRouter)
-  .use('/api', (req, res) => {
-    res.send('hello');
-  })
+  .use('/api', apiRouter)
   .get('*', pageRouter);
 app.use(errorHandlerMiddleware);
 
