@@ -1,26 +1,21 @@
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, Store, Middleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import createRootReducer from './reducers';
 import {routerMiddleware} from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 
-// Todo - refactor to typescript. resolve type errors.
-
-const configureStore = (history, initialState = {}) => {
-  const enhancers = [];
-
+const configureStore = (history: History, initialState = {}): Store => {
   const sagaMiddleware = createSagaMiddleware();
 
-  const middlewares = [routerMiddleware(history), sagaMiddleware];
-  enhancers.push(applyMiddleware(...middlewares));
+  const middlewares: Middleware[] = [routerMiddleware(history), sagaMiddleware];
 
   const composeEnhancers = composeWithDevTools({});
 
   const store = createStore(
     createRootReducer(history),
     initialState,
-    composeEnhancers(...enhancers),
+    composeEnhancers(applyMiddleware(...middlewares)),
   );
 
   sagaMiddleware.run(rootSaga);
