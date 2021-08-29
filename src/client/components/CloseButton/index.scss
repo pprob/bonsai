@@ -1,0 +1,38 @@
+@import '../../styles/variables';
+
+.button__container {
+  cursor: pointer;
+  position: relative;
+  height: 50px;
+  width: 50px;
+
+  .left-to-right {
+    height: 4px;
+    width: 50px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: $primary-font-color;
+    transform: rotate(45deg);
+    transition: all 0.3s ease-in;
+  }
+
+  .right-to-left {
+    height: 4px;
+    width: 50px;
+    position: absolute;
+    margin-top: 24px;
+    background-color: $primary-font-color;
+    transform: rotate(-45deg);
+    transition: all 0.3s ease-in;
+  }
+
+  &:hover {
+    .left-to-right {
+      transform: rotate(-45deg);
+    }
+
+    .right-to-left {
+      transform: rotate(45deg);
+    }
+  }
+}
