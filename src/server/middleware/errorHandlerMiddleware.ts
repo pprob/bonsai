@@ -1,13 +1,27 @@
-import express, {Request, Response, NextFunction} from 'express';
+import {Request, Response, NextFunction} from 'express';
+import {CustomError} from '../errors/CustomError';
 
 const errorHandlerMiddleware = (
-  err,
+  err: Error,
   req: Request,
   res: Response,
   next: NextFunction,
-) => {
-  res.send({
-    err,
+): any => {
+  console.log(err);
+  if (err instanceof CustomError) {
+    return res.status(err.statusCode).send({
+      success: false,
+      errors: err.serializeErrors(),
+    });
+  }
+
+  res.status(500).send({
+    success: false,
+    errors: [
+      {
+        message: 'Something went wrong',
+      },
+    ],
   });
 };
 
