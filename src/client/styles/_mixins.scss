@@ -1,5 +1,7 @@
 @import './variables';
 
+// Breakpoints
+
 @mixin sm-min {
   @media (min-width: $screen-sm-min) {
     @content;
@@ -29,3 +31,5 @@
     @content;
   }
 }
+
+//
