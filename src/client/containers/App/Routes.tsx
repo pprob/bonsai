@@ -6,6 +6,7 @@ const Routes: React.FC = () => {
     <Switch>
       <Route exact={true} path='/' render={() => <div>Home page</div>} />
       <Route path='/signup' render={() => <div>Signup</div>} />
+      <Route render={() => <div>error page</div>} />
     </Switch>
   );
 };
