@@ -1,7 +1,8 @@
 import React from 'react';
 import {push} from 'connected-react-router';
-import {useDispatch} from 'react-redux';
+import {useAppDispatch} from '../../hooks/redux';
 import {ReactElement} from 'react';
+import {toggleSliderMenuOff} from '../../redux/global/actions';
 import './index.scss';
 
 type Props = {
@@ -12,9 +13,10 @@ type Props = {
 };
 
 const NavIcon: React.FC<Props> = ({icon, text, redirectUrl}: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleOnClick = () => {
     dispatch(push(redirectUrl));
+    dispatch(toggleSliderMenuOff());
   };
   return (
     <div className='icon__container' onClick={handleOnClick}>
