@@ -1,5 +1,27 @@
 import mongoose from 'mongoose';
 
+interface ProductProps {
+  name: string;
+  price: number;
+  quantity: number;
+  categories: string[];
+  description: string;
+  images: Buffer[];
+}
+
+interface ProductDoc extends mongoose.Document {
+  name: string;
+  price: number;
+  quantity: number;
+  categories: string[];
+  description: string;
+  images: Buffer[];
+}
+
+interface ProductModel extends mongoose.Model<ProductDoc> {
+  build(props: ProductProps): ProductDoc;
+}
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -25,9 +47,7 @@ const productSchema = new mongoose.Schema(
     },
     images: [
       {
-        name: String,
-        data: Buffer,
-        alt: String,
+        type: Buffer,
       },
     ],
   },
@@ -39,6 +59,13 @@ const productSchema = new mongoose.Schema(
   },
 );
 
-const Product = mongoose.model('Products', productSchema);
+productSchema.statics.build = (props: ProductProps) => {
+  return new Product(props);
+};
+
+const Product = mongoose.model<ProductDoc, ProductModel>(
+  'Products',
+  productSchema,
+);
 
 export default Product;
