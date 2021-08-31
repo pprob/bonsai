@@ -12,6 +12,20 @@
   .header-burger-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 60%;
+
+    .logo-container {
+      img {
+        height: auto;
+        max-width: 80px;
+      }
+    }
+
+    @include md-min {
+      justify-content: flex-start;
+      flex: 0;
+    }
   }
 
   .header-navigation-icons {
