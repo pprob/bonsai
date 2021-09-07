@@ -1,6 +1,8 @@
 import {fork} from '@redux-saga/core/effects';
-import {test} from './global/saga';
+import {watchFetchProducts} from './products/sagas';
+import {watchSigninUser} from './authentication/sagas';
 
 export default function* rootSaga() {
-  yield fork(test);
+  yield fork(watchFetchProducts);
+  yield fork(watchSigninUser);
 }
