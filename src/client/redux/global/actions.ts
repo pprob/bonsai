@@ -1,5 +1,6 @@
 export enum globalActionCreatorTypes {
   toggleSlider = 'TOGGLE_SLIDER',
+  toggleSliderOff = 'TOGGLE_SLIDER_OFF',
 }
 
 export type toggleSlider = {
@@ -7,4 +8,8 @@ export type toggleSlider = {
 };
 export const toggleSliderMenu = (): toggleSlider => ({
   type: globalActionCreatorTypes.toggleSlider,
+});
+
+export const toggleSliderMenuOff = (): toggleSlider => ({
+  type: globalActionCreatorTypes.toggleSliderOff,
 });

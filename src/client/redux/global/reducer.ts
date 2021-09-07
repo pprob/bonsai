@@ -20,6 +20,10 @@ const globalReducer = (
       return updateState(state, {
         showMenuSlider: !state.showMenuSlider,
       });
+    case globalActionCreatorTypes.toggleSliderOff:
+      return updateState(state, {
+        showMenuSlider: false,
+      });
     default:
       return state;
   }
