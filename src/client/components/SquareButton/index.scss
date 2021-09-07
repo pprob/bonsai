@@ -1,0 +1,9 @@
+@import '../../styles/variables';
+
+.square-button {
+  padding: 25px 50px;
+  border: none;
+  cursor: pointer;
+  font-family: $secondary-text;
+  font-size: 16px;
+}
