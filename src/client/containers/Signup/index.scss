@@ -1,0 +1,18 @@
+@import '../../styles/mixins';
+
+.signup-layout__container {
+  @include app-container;
+
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+  }
+
+  .signup-button__container {
+    text-align: center;
+    margin-top: 30px;
+  }
+}
