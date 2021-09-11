@@ -33,8 +33,11 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif)$/,
-        use: 'file-loader',
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[ext]',
+        },
       },
     ],
   },
@@ -45,7 +48,6 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: 'src/client/index.html',
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackTagsPlugin({
       tags: ['config/main.js'],
       append: false,
@@ -54,11 +56,12 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, 'dist'),
+    static: './dist',
     proxy: {
       '/config': 'http://localhost:3000',
       '/api': 'http://localhost:3000',
     },
     hot: true,
+    port: '8080',
   },
 };

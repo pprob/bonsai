@@ -10,7 +10,7 @@
     "build": "webpack --config ./webpack.config.js",
     "start:dev": "concurrently \"yarn:start:dev-*\"",
     "start:dev-server": "ts-node-dev -r dotenv/config src/server/index.ts",
-    "start:dev-client": "webpack serve --config ./webpack.config.js --mode development --port 8080",
+    "start:dev-client": "webpack serve --mode=development",
     "lint": "eslint **/*.{ts,tsx,js}"
   },
   "dependencies": {
@@ -84,9 +84,9 @@
     "style-loader": "^3.2.1",
     "ts-loader": "^9.2.3",
     "ts-node-dev": "^1.1.8",
-    "webpack": "^5.45.1",
+    "webpack": "^5.52.1",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^4.2.0"
   },
   "config": {
     "commitizen": {
