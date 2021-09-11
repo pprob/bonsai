@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-const emailRegex =
+export const emailRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const containsNumberRegex = /\d/;
 const containsSpecialCharacterRegex = /[-!$%^&*@()_+|~=`{}\[\]:";'<>?,.\/]/;
@@ -27,7 +27,7 @@ const isValidSignupForm = (
   ),
   getError(
     containsSpecialCharacterRegex.test(password),
-    `Password must contain atleast one of the following special characters !$%^&*@()[]:;'<>?,./`,
+    `Password must contain atleast one of the following !$%^&*@()[]:;'<>?,./`,
   ),
   getError(password === password2, 'Passwords must be matching'),
 ];

@@ -115,4 +115,5 @@ export const sliderLinks = [
   signInLink,
   basketLink,
   myAccountLink,
+  signupLink,
 ];
