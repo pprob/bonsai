@@ -3,7 +3,8 @@ import {globalActionCreatorTypes, toggleSlider} from './actions';
 import updateState from '../../utils/updateState';
 
 const initialState: GlobalState = {
-  loading: false,
+  loading: true,
+  loadingMessage: '',
   showMenuSlider: false,
 };
 

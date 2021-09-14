@@ -6,3 +6,8 @@ export const sliderMenuSelector = createSelector(
   globalSelector,
   (globalState) => globalState.showMenuSlider,
 );
+
+export const loadingStateSelector = createSelector(
+  globalSelector,
+  (globalState) => globalState.loading,
+);
