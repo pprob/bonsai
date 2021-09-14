@@ -1,28 +1,19 @@
-@import '../../styles/mixins';
+@import '../../styles//mixins';
 @import '../../styles/variables';
 
-.signup-layout__container {
+.sigin-layout__container {
   @include app-container;
   @include fade(fadeIn, 1s, 0s);
 
-  .section__header {
-    text-align: center;
-
-    @include md-min {
-      text-align: left;
-      margin-left: 0;
-    }
-  }
-
-  .signup-form {
+  .signin-form {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    height: 200px;
+    height: 120px;
   }
 
-  .signup-button__container {
+  .signin-button__container {
     text-align: center;
     margin-top: 30px;
 
@@ -33,7 +24,7 @@
     }
   }
 
-  .signup-errors__container {
+  .signin-errors__container {
     max-width: 400px;
     margin: 20px auto 0px;
     padding: 20px;
@@ -48,12 +39,12 @@
         padding: 2px 0px;
 
         &::before {
+          position: relative;
           content: '\0021';
           margin-right: 10px;
           top: 2px;
-          color: red;
           font-size: 20px;
-          position: relative;
+          color: red;
         }
       }
     }

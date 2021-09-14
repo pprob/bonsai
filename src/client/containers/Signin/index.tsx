@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-import AuthInput from '../../components/AuthInput';
-import {useAppDispatch} from '../../hooks/redux';
-import {signUpUser} from '../../redux/authentication/actions';
-import SectionHeader from '../../components/SectionHeader';
-import SquareButton from '../../components/SquareButton';
-import {isValidSignupForm} from '../../utils/inputValidators';
 import './index.scss';
+import SectionHeader from '../../components/SectionHeader';
+import AuthInput from '../../components/AuthInput';
+import SquareButton from '../../components/SquareButton';
+import {isValidSigninForm} from '../../utils/inputValidators';
+import {useAppDispatch} from '../../hooks/redux';
+import {emailRegex} from '../../utils/inputValidators';
+import {signinUser} from '../../redux/authentication/actions';
 
 type Props = {};
 
-const SignupLayout: React.FunctionComponent<Props> = () => {
+const SigninLayout: React.VFC<Props> = () => {
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleEmailChange = (e) => {
     const value = e.currentTarget.value;
@@ -27,60 +27,41 @@ const SignupLayout: React.FunctionComponent<Props> = () => {
     setPassword(value.trim());
   };
 
-  const handleConfirmPasswordChange = (e) => {
-    const value = e.currentTarget.value;
-
-    setConfirmPassword(value.trim());
-  };
-
   const handleSubmitForm = () => {
-    if (errors.length > 0) {
-      return null;
+    if (emailRegex.test(email)) {
+      return dispatch(signinUser({email, password}));
     }
-
-    dispatch(
-      signUpUser({
-        email,
-        password,
-      }),
-    );
   };
 
   const getFormErrors = () => {
-    if (!password && !confirmPassword && !email) {
+    if (!email) {
       return [];
     }
 
-    return isValidSignupForm(email, password, confirmPassword);
+    return isValidSigninForm(email);
   };
 
   const errors = getFormErrors().filter(({isValid}) => !isValid);
 
   return (
-    <div className='signup-layout__container'>
-      <SectionHeader content='Sign up' />
-      <div className='signup-form'>
+    <div className='sigin-layout__container'>
+      <SectionHeader content='Sign in' />
+      <div className='signin-form'>
         <AuthInput
           type='text'
+          value={email}
           placeholder='Enter your email'
           handleOnChange={handleEmailChange}
-          value={email}
         />
         <AuthInput
           type='password'
+          value={password}
           placeholder='Enter your password'
           handleOnChange={handlePasswordChange}
-          value={password}
-        />
-        <AuthInput
-          type='password'
-          placeholder='Confirm your password'
-          handleOnChange={handleConfirmPasswordChange}
-          value={confirmPassword}
         />
       </div>
       {errors.length > 0 && (
-        <div className='signup-errors__container'>
+        <div className='signin-errors__container'>
           <ul>
             {errors.map((error, index) => (
               <li key={index}>{error.errorMessage}</li>
@@ -88,11 +69,11 @@ const SignupLayout: React.FunctionComponent<Props> = () => {
           </ul>
         </div>
       )}
-      <div className='signup-button__container'>
+      <div className='signin-button__container'>
         <SquareButton
-          buttonLabel='Sign up'
+          buttonLabel='Sign in'
           backgroundColor='#3d3f43'
-          disabled={errors.length ? true : false}
+          disabled={!email || !password}
           textColor='#eaebef'
           handleOnClick={handleSubmitForm}
         />
@@ -101,4 +82,4 @@ const SignupLayout: React.FunctionComponent<Props> = () => {
   );
 };
 
-export default SignupLayout;
+export default SigninLayout;

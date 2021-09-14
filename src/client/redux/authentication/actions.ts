@@ -1,30 +1,31 @@
-export enum AuthenticationActionCreatorTypes {
-  signinUser = 'SIGN_IN_USER',
-  signinUserSuccess = 'SIGN_IN_USER_SUCCESS',
-  signinUserFailed = 'SIGN_IN_USER_FAILED',
-}
+import {
+  AuthenticationActionCreatorTypes,
+  signUpUserPayload,
+  signUpUserAction,
+  signinUserPayload,
+  signinUserAction,
+  authSuccessPayload,
+  authSuccessAction,
+} from './types';
 
-export type signinUser = {
-  type: AuthenticationActionCreatorTypes.signinUser;
-  payload: signinUserPayload;
-};
+export const signUpUser = (payload: signUpUserPayload): signUpUserAction => ({
+  type: AuthenticationActionCreatorTypes.signupUser,
+  payload,
+});
 
-export type signinUserPayload = {
-  email: string;
-  password: string;
-};
+export const authenticationSuccess = (
+  payload: authSuccessPayload,
+): authSuccessAction => ({
+  type: AuthenticationActionCreatorTypes.authSuccess,
+  payload,
+});
 
-export const signInUser = (payload: signinUserPayload): signinUser => ({
+export const authenticateFailure = (payload) => ({
+  type: AuthenticationActionCreatorTypes.authFailure,
+  payload,
+});
+
+export const signinUser = (payload: signinUserPayload): signinUserAction => ({
   type: AuthenticationActionCreatorTypes.signinUser,
-  payload,
-});
-
-export const signInUserSuccess = (payload) => ({
-  type: AuthenticationActionCreatorTypes.signinUserSuccess,
-  payload,
-});
-
-export const signInUserFail = (payload) => ({
-  type: AuthenticationActionCreatorTypes.signinUserFailed,
   payload,
 });

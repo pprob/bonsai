@@ -1,22 +1,57 @@
 import {takeLatest, put} from '@redux-saga/core/effects';
-import {AuthenticationActionCreatorTypes, signInUserSuccess} from './actions';
+import {push} from 'connected-react-router';
+import {AuthenticationActionCreatorTypes} from './types';
+import {authenticationSuccess} from './actions';
 import axios from 'axios';
 
-const signinUserWorker = function* (action) {
+const signUpUserWorker = function* (action) {
   const {payload} = action;
-  let result;
-  console.log(payload);
-  try {
-    result = axios.post('/api/user/signin', payload);
-  } catch (error) {}
 
-  const {data} = result;
-  yield put(signInUserSuccess(data));
+  try {
+    const {data} = yield axios.post('/api/user/create', payload);
+
+    const authData = {
+      email: data.email,
+      id: data.id,
+      createdAt: data.createdAt,
+    };
+
+    yield put(authenticationSuccess(authData));
+    yield put(push('/'));
+  } catch (error: any) {
+    console.log(error.Response);
+  }
 };
 
-export const watchSigninUser = function* () {
+const signInUserWorker = function* (action) {
+  const {payload} = action;
+
+  try {
+    const {
+      data: {user},
+    } = yield axios.post('/api/user/signin', payload);
+
+    const authData = {
+      email: user.email,
+      id: user.id,
+      createdAt: user.createdAt,
+    };
+
+    yield put(authenticationSuccess(authData));
+    yield put(push('/'));
+  } catch (error: any) {}
+};
+
+export const watchSignupUser = function* () {
+  yield takeLatest(
+    AuthenticationActionCreatorTypes.signupUser,
+    signUpUserWorker,
+  );
+};
+
+export const watchSignInUser = function* () {
   yield takeLatest(
     AuthenticationActionCreatorTypes.signinUser,
-    signinUserWorker,
+    signInUserWorker,
   );
 };
