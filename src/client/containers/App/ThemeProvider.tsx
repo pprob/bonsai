@@ -1,9 +1,14 @@
 import React, {createContext, useState, useContext} from 'react';
 import {Themes} from '../../redux/global/enums';
 
-export const ThemeContext = createContext({});
+type ContextProps = {
+  theme: string;
+  setAppTheme: () => void;
+};
 
-export const useTheme = () => useContext(ThemeContext);
+export const ThemeContext = createContext<Partial<ContextProps>>({});
+
+export const useTheme = (): any => useContext(ThemeContext);
 
 type Props = {
   children: React.ReactNode;
