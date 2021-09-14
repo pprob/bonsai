@@ -1,11 +1,9 @@
 import {GlobalState} from './types';
 import {globalActionCreatorTypes, toggleSlider} from './actions';
-import {Themes} from './enums';
 import updateState from '../../utils/updateState';
 
 const initialState: GlobalState = {
   loading: false,
-  theme: Themes.Light,
   showMenuSlider: false,
 };
 

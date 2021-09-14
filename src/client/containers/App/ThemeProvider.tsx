@@ -1,19 +1,29 @@
-import React, {createContext} from 'react';
-import {useSelector} from 'react-redux';
+import React, {createContext, useState, useContext} from 'react';
 import {Themes} from '../../redux/global/enums';
-import {themeSelector} from '../../redux/global/selectors';
 
-export const ThemeContext = createContext(Themes.Light);
+export const ThemeContext = createContext({});
+
+export const useTheme = () => useContext(ThemeContext);
 
 type Props = {
   children: React.ReactNode;
 };
 
 const ThemeProvider: React.FC<Props> = ({children}: Props) => {
-  const theme = useSelector(themeSelector);
+  const [theme, setTheme] = useState(Themes.Light);
+
+  const setAppTheme = () => {
+    if (theme === Themes.Light) {
+      setTheme(Themes.Dark);
+    } else {
+      setTheme(Themes.Light);
+    }
+  };
 
   return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={{theme, setAppTheme}}>
+      {children}
+    </ThemeContext.Provider>
   );
 };
 
