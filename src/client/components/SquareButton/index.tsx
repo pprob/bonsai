@@ -4,6 +4,7 @@ import './index.scss';
 type Props = {
   buttonLabel: string;
   backgroundColor: string;
+  disabled: boolean;
   textColor: string;
   handleOnClick: () => void;
 };
@@ -13,6 +14,7 @@ const SquareButton: React.VFC<Props> = ({
   backgroundColor,
   textColor,
   handleOnClick,
+  disabled = false,
 }: Props) => {
   const style = {
     backgroundColor,
@@ -20,7 +22,12 @@ const SquareButton: React.VFC<Props> = ({
   };
   return (
     <>
-      <button className='square-button' style={style} onClick={handleOnClick}>
+      <button
+        className='square-button'
+        style={style}
+        onClick={handleOnClick}
+        disabled={disabled}
+      >
         {buttonLabel}
       </button>
     </>
