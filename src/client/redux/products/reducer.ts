@@ -13,7 +13,6 @@ const productsReducer = (
 ): ProductState => {
   switch (action.type) {
     case ProductsActionCreatorTypes.setProducts:
-      console.log(action.payload);
       return state;
 
     default:
