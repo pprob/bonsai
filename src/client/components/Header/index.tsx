@@ -1,17 +1,30 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-var-requires, max-len */
+
 import React from 'react';
 import NavIcon from '../NavIcon';
 import HamBurgerMenu from '../HamburgerMenu';
-import {navigationIcons, navigationLinks} from '../../utils/navLinks';
+import {
+  navigationIcons,
+  navigationLinks,
+  NavLinkConstants,
+} from '../../utils/navLinks';
 import {push} from 'connected-react-router';
 import './index.scss';
-import {useDispatch} from 'react-redux';
-// import * as ZenLifeLogo from '../../assets/images/ZenLifeLogo.png';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
+import {isSignedIn} from '../../redux/authentication/selectors';
+const ZenLifeLogo = require('../../assets/images/ZenLifeLogo.png').default;
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const isUserSignedIn = useAppSelector(isSignedIn);
   const navLinksWithIcons = navigationIcons
-    .filter(() => true)
+    .filter(({headerFilter}) => {
+      if (isUserSignedIn) {
+        return headerFilter === NavLinkConstants.LoggedInFilter;
+      } else {
+        return headerFilter === NavLinkConstants.LoggedOutFilter;
+      }
+    })
     .sort((a, b) => a.order! - b.order!);
   const navLinksNoIcons = navigationLinks.sort((a, b) => a.order - b.order);
 
@@ -20,7 +33,7 @@ const Header: React.FC = () => {
       <div className='header-burger-container'>
         <HamBurgerMenu />
         <div className='logo-container'>
-          {/* <img src={ZenLifeLogo} alt='logo image' /> */}
+          <img src={ZenLifeLogo} alt='logo image' />
         </div>
       </div>
       <div className='header-navigation-links'>
