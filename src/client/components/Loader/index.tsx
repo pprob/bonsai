@@ -2,14 +2,13 @@ import React, {VFC} from 'react';
 import Lottie from 'react-lottie';
 import {useAppSelector} from '../../hooks/redux';
 import {loadingStateSelector} from '../../redux/global/selectors';
-import lottie from '../../assets/animations/lottie.json';
+import lottie from '../../assets/animations/loader.json';
 import './index.scss';
 
 type Props = {};
 
 const Loader: VFC<Props> = () => {
   const isLoading = useAppSelector(loadingStateSelector);
-  console.log(isLoading);
 
   const lottieOptions = {
     loop: true,
