@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import './index.scss';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {sliderMenuSelector} from '../../redux/global/selectors';
+import {isSignedIn} from '../../redux/authentication/selectors';
 import {toggleSliderMenu} from '../../redux/global/actions';
 import CloseButton from '../CloseButton';
 import {sliderLinks, NavLinkConstants} from '../../utils/navLinks';
@@ -11,6 +12,7 @@ type Props = {};
 
 const SliderMenu: React.FC<Props> = () => {
   const displaySlider = useAppSelector(sliderMenuSelector);
+  const isUserSignedIn = useAppSelector(isSignedIn);
   const dispatch = useAppDispatch();
 
   const upperLinks = sliderLinks
@@ -18,6 +20,12 @@ const SliderMenu: React.FC<Props> = () => {
       ({sliderMenuFilter}) =>
         sliderMenuFilter === NavLinkConstants.sliderMenuUpper,
     )
+    .filter(({authFilter}) => {
+      if (isUserSignedIn) {
+        return authFilter !== NavLinkConstants.LoggedOutFilter;
+      }
+      return authFilter !== NavLinkConstants.LoggedInFilter;
+    })
     .sort((a, b) => a.order - b.order);
 
   const lowerLinks = sliderLinks
@@ -25,6 +33,12 @@ const SliderMenu: React.FC<Props> = () => {
       ({sliderMenuFilter}) =>
         sliderMenuFilter === NavLinkConstants.sliderMenuLower,
     )
+    .filter(({authFilter}) => {
+      if (isUserSignedIn) {
+        return authFilter !== NavLinkConstants.LoggedOutFilter;
+      }
+      return authFilter !== NavLinkConstants.LoggedInFilter;
+    })
     .sort((a, b) => a.order - b.order);
 
   const handleCloseSlider = useCallback(() => {

@@ -18,11 +18,11 @@ const Header: React.FC = () => {
   const dispatch = useAppDispatch();
   const isUserSignedIn = useAppSelector(isSignedIn);
   const navLinksWithIcons = navigationIcons
-    .filter(({headerFilter}) => {
+    .filter(({authFilter}) => {
       if (isUserSignedIn) {
-        return headerFilter === NavLinkConstants.LoggedInFilter;
+        return authFilter !== NavLinkConstants.LoggedOutFilter;
       } else {
-        return headerFilter === NavLinkConstants.LoggedOutFilter;
+        return authFilter !== NavLinkConstants.LoggedInFilter;
       }
     })
     .sort((a, b) => a.order! - b.order!);
