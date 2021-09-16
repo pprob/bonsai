@@ -3,3 +3,11 @@ export type GlobalState = {
   loadingMessage: string;
   showMenuSlider: boolean;
 };
+
+export type toggleSlider = {
+  type: string;
+};
+
+export type toggleLoader = {
+  type: string;
+};
