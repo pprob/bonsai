@@ -34,7 +34,7 @@ const myAccountLink = {
   icon: <FontAwesomeIcon icon={faUser} />,
   text: NavLinkConstants.MyAccount,
   redirectUrl: '/my-account',
-  headerFilter: NavLinkConstants.LoggedInFilter,
+  authFilter: NavLinkConstants.LoggedInFilter,
   sliderMenuFilter: NavLinkConstants.sliderMenuUpper,
   order: 3,
 };
@@ -43,7 +43,7 @@ const signupLink = {
   icon: <FontAwesomeIcon icon={faUserPlus} />,
   text: NavLinkConstants.SignUp,
   redirectUrl: '/signup',
-  headerFilter: NavLinkConstants.LoggedOutFilter,
+  authFilter: NavLinkConstants.LoggedOutFilter,
   sliderMenuFilter: NavLinkConstants.sliderMenuLower,
   order: 2,
 };
@@ -52,7 +52,7 @@ const basketLink = {
   icon: <FontAwesomeIcon icon={faShoppingCart} />,
   text: NavLinkConstants.Cart,
   redirectUrl: '/my-basket',
-  headerFilter: NavLinkConstants.LoggedInFilter,
+  authFilter: '',
   sliderMenuFilter: NavLinkConstants.sliderMenuUpper,
   order: 4,
 };
@@ -61,7 +61,7 @@ const signOutLink = {
   icon: <FontAwesomeIcon icon={faPowerOff} />,
   text: NavLinkConstants.SignOut,
   redirectUrl: '/signout',
-  headerFilter: NavLinkConstants.LoggedInFilter,
+  authFilter: NavLinkConstants.LoggedInFilter,
   sliderMenuFilter: NavLinkConstants.sliderMenuLower,
   order: 5,
 };
@@ -70,7 +70,7 @@ const signInLink = {
   icon: <FontAwesomeIcon icon={faUserLock} />,
   text: NavLinkConstants.SignIn,
   redirectUrl: '/signin',
-  headerFilter: NavLinkConstants.LoggedOutFilter,
+  authFilter: NavLinkConstants.LoggedOutFilter,
   sliderMenuFilter: NavLinkConstants.sliderMenuLower,
   order: 1,
 };
@@ -79,6 +79,7 @@ const homeLink = {
   text: NavLinks.Home,
   icon: <FontAwesomeIcon icon={faHome} />,
   redirectUrl: '/',
+  authFilter: '',
   order: 1,
   sliderMenuFilter: NavLinkConstants.sliderMenuUpper,
 };
@@ -87,6 +88,7 @@ const productsLink = {
   text: NavLinks.Products,
   icon: <FontAwesomeIcon icon={faStoreAlt} />,
   redirectUrl: '/products',
+  authFilter: '',
   order: 2,
   sliderMenuFilter: NavLinkConstants.sliderMenuUpper,
 };
@@ -95,6 +97,7 @@ const aboutUsLink = {
   text: NavLinks.AboutUs,
   redirectUrl: '/about-us',
   order: 3,
+  authFilter: '',
   sliderMenuFilter: NavLinkConstants.sliderMenuUpper,
 };
 
