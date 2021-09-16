@@ -32,8 +32,9 @@ const isValidSignupForm = (
   getError(password === password2, 'Passwords must be matching'),
 ];
 
-const isValidSigninForm = (email: string): authErrors[] => [
+const isValidSigninForm = (email: string, password: string): authErrors[] => [
   getError(emailRegex.test(email), 'Please enter a valid email address'),
+  getError(password !== '', 'Please enter your password'),
 ];
 
 export {isValidSignupForm, isValidSigninForm};

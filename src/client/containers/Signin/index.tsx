@@ -38,7 +38,7 @@ const SigninLayout: React.VFC<Props> = () => {
       return [];
     }
 
-    return isValidSigninForm(email);
+    return isValidSigninForm(email, password);
   };
 
   const errors = getFormErrors().filter(({isValid}) => !isValid);
