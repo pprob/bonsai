@@ -2,10 +2,13 @@ import {takeLatest, put} from '@redux-saga/core/effects';
 import {push} from 'connected-react-router';
 import {AuthenticationActionCreatorTypes} from './types';
 import {authenticationSuccess} from './actions';
+import {toggleAppLoaderOn, toggleAppLoaderOff} from '../global/actions';
 import axios from 'axios';
 
 const signUpUserWorker = function* (action) {
   const {payload} = action;
+
+  yield put(toggleAppLoaderOn());
 
   try {
     const {data} = yield axios.post('/api/user/create', payload);
@@ -21,10 +24,14 @@ const signUpUserWorker = function* (action) {
   } catch (error: any) {
     console.log(error.Response);
   }
+
+  yield put(toggleAppLoaderOff());
 };
 
 const signInUserWorker = function* (action) {
   const {payload} = action;
+
+  yield put(toggleAppLoaderOn());
 
   try {
     const {
@@ -40,6 +47,8 @@ const signInUserWorker = function* (action) {
     yield put(authenticationSuccess(authData));
     yield put(push('/'));
   } catch (error: any) {}
+
+  yield put(toggleAppLoaderOff());
 };
 
 export const watchSignupUser = function* () {

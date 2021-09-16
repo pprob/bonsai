@@ -1,9 +1,9 @@
-import {GlobalState} from './types';
-import {globalActionCreatorTypes, toggleSlider} from './actions';
+import {GlobalState, toggleSlider} from './types';
+import {globalActionCreatorTypes} from './actions';
 import updateState from '../../utils/updateState';
 
 const initialState: GlobalState = {
-  loading: true,
+  loading: false,
   loadingMessage: '',
   showMenuSlider: false,
 };
@@ -19,10 +19,22 @@ const globalReducer = (
       return updateState(state, {
         showMenuSlider: !state.showMenuSlider,
       });
+
     case globalActionCreatorTypes.toggleSliderOff:
       return updateState(state, {
         showMenuSlider: false,
       });
+
+    case globalActionCreatorTypes.toggleLoaderOn:
+      return updateState(state, {
+        loading: true,
+      });
+
+    case globalActionCreatorTypes.toggleLoaderOff:
+      return updateState(state, {
+        loading: false,
+      });
+
     default:
       return state;
   }
