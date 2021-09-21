@@ -60,7 +60,7 @@ const basketLink = {
 const signOutLink = {
   icon: <FontAwesomeIcon icon={faPowerOff} />,
   text: NavLinkConstants.SignOut,
-  redirectUrl: '/signout',
+  redirectUrl: '',
   authFilter: NavLinkConstants.LoggedInFilter,
   sliderMenuFilter: NavLinkConstants.sliderMenuLower,
   order: 5,
